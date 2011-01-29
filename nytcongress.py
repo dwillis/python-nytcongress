@@ -168,6 +168,12 @@ class BillsClient(Client):
         "Shortcut for getting updated bills"
         return self.recent(chamber, congress, 'updated')
 
+    def similar(self, bill_id, congress=CURRENT_CONGRESS):
+        path = "%s/bills/%s/other"
+        result = self.fetch(path, congress, bill_id)
+        return result
+    
+
 class VotesClient(Client):
     
     # date-based queries

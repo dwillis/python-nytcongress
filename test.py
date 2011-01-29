@@ -58,12 +58,12 @@ class BillTest(APITest):
     
     def test_introduced_shortcut(self):
         latest = self.congress.bills.introduced('house')
-        url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/111/house/bills/introduced.json?api-key=%s" % API_KEY
+        url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/112/house/bills/introduced.json?api-key=%s" % API_KEY
         self.check_response(latest, url)
     
     def test_updated_shortcut(self):
         latest = self.congress.bills.updated('house')
-        url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/111/house/bills/updated.json?api-key=%s" % API_KEY
+        url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/112/house/bills/updated.json?api-key=%s" % API_KEY
         self.check_response(latest, url)
     
     def test_bills_by_member(self):
@@ -95,6 +95,12 @@ class BillTest(APITest):
         hr1 = self.congress.bills.cosponsors('hr1', 111)
         url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/111/bills/hr1/cosponsors.json?api-key=%s" % API_KEY
         self.check_response(hr1, url)
+    
+    def test_bill_similar(self):
+        hjres17 = self.congress.bills.similar('hjres17', 112)
+        url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/112/bills/hjres17/other.json?api-key=%s" % API_KEY
+        self.check_response(hjres17, url)
+
 
 class CommitteeTest(APITest):
     
@@ -108,8 +114,8 @@ class CommitteeTest(APITest):
         self.check_response(senate, url2)
     
     def test_committee_detail(self):
-        hsba = self.congress.committees.get('house', 'hsba', 111)
-        url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/111/house/committees/HSBA.json?api-key=%s" % API_KEY
+        hsba = self.congress.committees.get('house', 'hsba', 112)
+        url = "http://api.nytimes.com/svc/politics/v3/us/legislative/congress/112/house/committees/HSBA.json?api-key=%s" % API_KEY
         self.check_response(hsba, url)
 
 class NominationTest(APITest):
